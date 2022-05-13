@@ -205,59 +205,52 @@ pub fn main() !void {
 
     var it = beam.chunks.iterator();
     while (it.next()) |entry| {
-        const chunk = entry.value_ptr.*;
-        debugInfo("chunk: {s}, size: {d}\n", .{entry.key_ptr.*, chunk.size});
+        debugInfo("chunk: {s}, size: {d}\n", .{entry.key_ptr.*, entry.value_ptr.*.size});
     }
     
     
     if (chunks.get("Code")) |*val| { 
-        debugInfo("\n\nparse code\n", .{});
+        debugInfo("\nparse code\n", .{});
         try parseCode(val, &beam); 
     }
     
-    
     if (chunks.get("AtU8")) |*val| {
-        debugInfo("\n\nparse atoms\n", .{});
+        debugInfo("\nparse atoms\n", .{});
         try parseAtom(val, &beam); 
     }
-
     
     if (chunks.get("ImpT")) |*val| { 
-        debugInfo("\n\nparse imports\n", .{});
+        debugInfo("\nparse imports\n", .{});
         try parseImpT(val, &beam); 
     }
 
-    
     if (chunks.get("ExpT")) |*val| {
-        debugInfo("\n\nparse exports\n", .{});
+        debugInfo("\nparse exports\n", .{});
         try parseExpT(val, &beam);
     }
-
     
     if (chunks.get("LocT")) |*val| {
-        debugInfo("\n\nparse locals\n", .{});
+        debugInfo("\nparse locals\n", .{});
         try parseExpT(val, &beam); 
-        
     }
-
     
     if (chunks.get("FunT")) |*val| { 
-        debugInfo("\n\nparse lambdas\n", .{});
+        debugInfo("\nparse lambdas\n", .{});
         try parseFunT(val, &beam); 
     }
 
     if (chunks.get("LitT")) |*val| { 
-        debugInfo("\n\nparse literal\n", .{});
+        debugInfo("\nparse literal\n", .{});
         try parseLitT(val, &beam); 
     }
 
     if (chunks.get("Line")) |*val| { 
-        debugInfo("\n\nparse line\n", .{});
+        debugInfo("\nparse line\n", .{});
         try parseLine(val, &beam); 
     }
 
     if (chunks.get("Type")) |*val| { 
-        debugInfo("\n\nparse type\n", .{});
+        debugInfo("\nparse type\n", .{});
         try parseType(val, &beam); 
     }
 }
